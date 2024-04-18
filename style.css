@@ -1,0 +1,170 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    color: white;
+    font-family: sans-serif;
+}
+
+button {
+    border: none;
+    outline: none;
+}
+
+.container {
+    display: flex;
+}
+
+.date,
+.seat-container {
+    height: 100vh;
+    width: 100vw;
+    background-color: lightblue;
+}
+
+.date {
+    background-image: url(/assests/image/aquaman.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-color: black;
+    position: relative;
+
+}
+
+.seat-container {
+    background-color: lightcoral;
+}
+
+.d-none {
+    display: none
+}
+
+.content-container {
+    height: 70%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    bottom: 0px;
+    left: px;
+    text-align: center;
+    padding: 6.1875rem 2.125rem 3.125rem 2.125rem;
+    background-image: linear-gradient(0deg, black 40%, #091322, transparent);
+
+}
+
+.content-container h1 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    font-weight: 500;
+}
+
+.content-container p {
+    margin-bottom: 1.125rem;
+    height: 6.75rem;
+    
+}
+
+#text-more,
+#read-less {
+    display: none;
+}
+
+#read-more,
+#read-less {
+    cursor: pointer;
+}
+
+.content-container h3 {
+    font-size: 1.5rem;
+
+}
+
+.primary-button {
+    padding: 3px;
+    border-radius: 33px;
+    background: linear-gradient(to right, #4fbecd 45%, #194257, #0b1322);
+    font-size: 1.125rem;
+}
+
+.primary-button>div {
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    border-radius: 33px;
+    padding: 13px 0px;
+    background: linear-gradient(129deg, #2b788e, #102336);
+}
+
+.booking-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 1.25rem;
+    margin-top: 1.3125rem;
+    margin-bottom: 2rem;
+    
+}
+
+.booking-item:first-child,
+.booking-item:nth-child(5) {
+    margin-top: 2.5625rem;
+}
+
+.booking-item:nth-child(2),
+.booking-item:nth-child(4) {
+    margin-top: 1.125rem;
+}
+
+.booking-date {
+    width: 3.75rem;
+    height: 4.375rem;
+    font-size: 1rem;
+    border-radius: 6px;
+    padding: 1px;
+    margin-bottom: 0.75rem;
+    background: linear-gradient(129deg, #4fbecd, #102336);
+    line-height: 1.5rem;
+
+}
+
+.booking-date>div {
+    width: 100%;
+    height: 100%;
+    border-radius: 6px;
+    background: #0b1322;
+    padding: 0.6875rem 0.5rem;
+}
+
+.booking-date .booking-active {
+    background: linear-gradient(130deg, #2b788e 40%, #102336);
+}
+
+.booking-time {
+    width: 3.75rem;
+    height: 2.125rem;
+    font-size: 1rem;
+    text-align: center;
+    border-radius: 6px;
+    padding: 1px;
+    background: linear-gradient(129deg, #4fbecd, #102336);
+}
+
+.booking-time>div {
+    width: 100%;
+    height: 100%;
+    border-radius: 6px;
+    background: #0b1322;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media only screen and (min-width: 768px) {
+    .d-none {
+        display: initial;
+    }
+
+    #reserve-button,
+    #back-button {
+        display: none;
+    }
+}
