@@ -27,84 +27,14 @@
                 </p>
 
                 <h3>Select Date and Time</h3>
-                <div class="booking-container">
-                    <!-- <div class="booking-item">
-                        <div class="booking-date">
-                            <div>
-                                Thu <br> <b>21</b>
-                            </div>
-                        </div>
-                        <div class="booking-time">
-                            <div>
-                                16:00
-                            </div>
-                        </div>
-                    </div>
-                    <div class="booking-item">
-                        <div class="booking-date">
-                            <div>
-                                Thu <br> <b>21</b>
-                            </div>
-                        </div>
-                        <div class="booking-time">
-                            <div>
-                                16:00
-                            </div>
-                        </div>
-                    </div>
-                    <div class="booking-item">
-                        <div class="booking-date">
-                            <div class="booking-active">
-                                Thu <br><b>21</b>
-                            </div>
-                        </div>
-                        <div class="booking-time">
-                            <div>
-                                16:00
-                            </div>
-                        </div>
-                    </div>
-                    <div class="booking-item">
-                        <div class="booking-date">
-                            <div>
-                                Thu <br> <b>21</b>
-                            </div>
-                        </div>
-                        <div class="booking-time">
-                            <div>
-                                16:00
-                            </div>
-                        </div>
-                    </div>
-                    <div class="booking-item">
-                        <div class="booking-date">
-                            <div>
-                                Thu <br> <b>21</b>
-                            </div>
-                        </div>
-                        <div class="booking-time">
-                            <div>
-                                16:00
-                            </div>
-                        </div>
-                    </div>
-
-                    TESTING
-                    <div class="booking-item">
-                        <div class="booking-date">
-                            <div>
-                                Thu <br> <b>21</b>
-                            </div>
-                        </div>
-                        <div class="booking-time">
-                            <div>
-                                16:00
-                            </div>
-                        </div>
-                    </div>
-                    END TESTING -->
-
+                <div id="booking-slider">
+                    <div class="booking-container">
+                     
+                    </div>                   
                 </div>
+                
+                <button id="prev"><</button>
+                <button id="next">></button>
                 <button id="reserve-button" class="primary-button">
                     <div>
                         Reservation
@@ -114,12 +44,67 @@
             </div>
         </div>
 
+        <!-- SEAT CONTAINER START -->
 
-        
         <div class="seat-container d-none">
+            <nav>Nav</nav>
+            <div>
+                <div>Screen</div>
+                <div class="seat-picker">
+                    <div id="seat-row-one" class="seat-row justify-around">
+                        <div class="seat-row">
+
+                        </div>
+                        <div class="seat-row">
+
+                        </div>
+                    </div>
+                    <div id="seat-row-two" class="seat-row justify-between">
+                        <div class="seat-row">
+
+                        </div>
+                        <div class="seat-row">
+
+                        </div>
+                    </div>
+                    <div id="seat-row-three" class="seat-row">
+
+                    </div>
+                    <div id="seat-row-four" class="seat-row">
+
+                    </div>
+                    <div id="seat-row-five" class="seat-row">
+
+
+                    </div>
+                    <div id="seat-row-six" class="seat-row">
+
+
+                    </div>
+                </div>
+            </div>
+            <div class="seat-description">
+                <div class="availability">
+                    <i class="dot-icon"> &#x2022;</i>
+                    <p>Available</p>
+                </div>
+                <div class="availability">
+                    <i class="dot-icon"> &#x2022;</i>
+                    <p>Reserved</p>
+                </div>
+                <div class="availability">
+                    <i class="dot-icon"> &#x2022;</i>
+                    <p>Selected</p>
+                </div>
+            </div>
+           
+        
             <button id="back-button">back</button>
         </div>
+
+        <!-- SEAT CONTAINER END -->
     </div>
+    <script src="/data/seat_data.js"></script>
     <script src="script.js"></script>
 </body>
 
