@@ -2,7 +2,7 @@
     box-sizing: border-box;
     margin: 0;
     color: white;
-    font-family: sans-serif;  
+    font-family: 'Poppins', sans-serif;
     scroll-behavior: smooth;
 }
 
@@ -40,7 +40,7 @@ button {
 }
 
 .content-container {
-    height: 70%;
+    height: 71%;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -54,14 +54,18 @@ button {
 }
 
 .content-container h1 {
-    font-size: 1.5rem;
+    font-size: 1.5rem;  
+    font-weight: 700;
+}
+.content-container h2 {
+    font-size: 1.3rem;
     margin-bottom: 1rem;
     font-weight: 500;
 }
-
 .content-container p {
     margin-bottom: 1.125rem;
-    height: 6.75rem;
+    height: 6.625rem;
+    font-size: 0.875rem;
 
 }
 
@@ -75,8 +79,9 @@ button {
     cursor: pointer;
 }
 
-.content-container h3 {
+.content-container h4 {
     font-size: 1.5rem;
+    font-weight: 300;
 
 }
 
@@ -97,25 +102,27 @@ button {
 }
 
 /* #booking-slider{
-    position: relative;
-    overflow: hidden;
+ height: 22.5rem;
    
 } */
-.booking-container {
+.booking-container {    
     display: flex;
     justify-content: space-between;
     align-items: end;
     gap: 1.25rem;
     margin-top: 1.3125rem;
     margin-bottom: 2rem;
-    transition: transform 1s ease;
+    transition: transform .3s ease;
     transform: translateX(0);
-    overflow-x: hidden;      
+    overflow-x: hidden;
+    height: 10rem;
+    
 }
+
 /* .booking-container::-webkit-scrollbar{
     display: none;
 }  */
-.booking-container.dragging{
+.booking-container.dragging {
     scroll-behavior: auto;
 }
 
@@ -147,10 +154,12 @@ button {
 #prev:hover {
     opacity: 1;
 }
-.booking-item.up-one{
+
+.booking-item.up-one {
     margin-bottom: 1.125rem;
 }
-.booking-item.up-two{
+
+.booking-item.up-two {
     margin-bottom: 2.5625rem;
 }
 
@@ -212,8 +221,52 @@ button {
     align-items: center;
 }
 
+/* -------- SEAT SCREEN ---------- */
+.seat-nav-bar {
+    display: flex;
+    padding: 2.5rem 1.5rem 1.25rem 1.5rem;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.seat-nav-bar p {
+    font-size: 1.125rem;
+    font-weight: 700;
+}
+
+.nav-icon-container {
+    width: 36px;
+    height: 36px;
+    padding: 1px;
+    background: linear-gradient(120deg, #4fbecd, transparent);
+    border-radius: 100%;
+}
+
+.nav-icon-container>div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
+    background-color: #333333;
+}
+
+.cross-line {
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    margin: 0 1.5rem;
+}
+
+.red-curve-line {
+    margin: 3.8rem 0 3.5rem 0;
+}
+
+.red-curve-line path {
+    filter: drop-shadow(1px 1px 3px #00FFE0);
+}
+
 .seat-picker {
-    padding: 12.5rem 2.375rem 2rem;
+    padding: 0 2.375rem 0;
 }
 
 .seat-row {
@@ -265,7 +318,7 @@ path {
 }
 
 .dot-icon {
-    font-size: 3rem;
+    font-size: 2.5rem;
 }
 
 .availability {
@@ -282,6 +335,51 @@ path {
     color: #00FFE0;
 }
 
+/* -------- SEAT SELECTED DESCRIPTION --------*/
+.seat-selected-description{
+    background: linear-gradient(129deg, #2b788e, #102336);
+    height: 25%;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    display: flex;
+}
+.seat-selected-description > div:first-child{
+    width: 75%
+}
+.seat-selected-description > div:last-child{    
+    width: 25%;
+   display: flex;
+   align-items: center;
+}
+.book-button-background{    
+    width: 100%;
+    background-color: black;    
+    padding: 1rem;
+    border-radius: 100% 0 0 100%;
+}
+.book-button-background > div{
+    height: 4.3125rem;
+    width:  4.3125rem;
+    border-radius: 100%;
+    background: linear-gradient(120deg, #4fbecd, transparent);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.book-button-background button{
+    height: 4.1875rem;
+    width:  4.1875rem;
+    border-radius: 100%;
+    background-color: #4fbecd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+.book-button-background button:disabled{
+    background-color: #333333;
+}
 @media only screen and (min-width: 768px) {
     .d-none {
         display: initial;
