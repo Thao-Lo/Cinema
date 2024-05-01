@@ -11,6 +11,14 @@ button {
     outline: none;
 }
 
+.white-opacity-20 {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.grey-icon-bg {
+    background-color: #333333;
+}
+
 .container {
     display: flex;
 }
@@ -20,6 +28,7 @@ button {
     height: 100vh;
     width: 100vw;
     background-color: lightblue;
+    position: relative;
 }
 
 .date {
@@ -54,14 +63,16 @@ button {
 }
 
 .content-container h1 {
-    font-size: 1.5rem;  
+    font-size: 1.5rem;
     font-weight: 700;
 }
+
 .content-container h2 {
     font-size: 1.3rem;
     margin-bottom: 1rem;
     font-weight: 500;
 }
+
 .content-container p {
     margin-bottom: 1.125rem;
     height: 6.625rem;
@@ -105,18 +116,18 @@ button {
  height: 22.5rem;
    
 } */
-.booking-container {    
+.booking-container {
     display: flex;
     justify-content: space-between;
     align-items: end;
     gap: 1.25rem;
     margin-top: 1.3125rem;
     margin-bottom: 2rem;
-    transition: transform .3s ease;
+    transition: transform 0.1s linear;
     transform: translateX(0);
     overflow-x: hidden;
     height: 10rem;
-    
+
 }
 
 /* .booking-container::-webkit-scrollbar{
@@ -157,10 +168,12 @@ button {
 
 .booking-item.up-one {
     margin-bottom: 1.125rem;
+   
 }
 
 .booking-item.up-two {
     margin-bottom: 2.5625rem;
+    
 }
 
 /* .booking-item:first-child,
@@ -222,16 +235,16 @@ button {
 }
 
 /* -------- SEAT SCREEN ---------- */
-.seat-nav-bar {
+.nav-bar {
     display: flex;
     padding: 2.5rem 1.5rem 1.25rem 1.5rem;
     justify-content: space-between;
     align-items: center;
 }
 
-.seat-nav-bar p {
+.nav-bar p {
     font-size: 1.125rem;
-    font-weight: 700;
+    font-weight: 600;
 }
 
 .nav-icon-container {
@@ -249,14 +262,19 @@ button {
     width: 100%;
     height: 100%;
     border-radius: 100%;
-    background-color: #333333;
 }
 
-.cross-line {
+#prev-button {
+    display: none;
+}
+
+.cross-line-mobile {
     border-top: 1px solid rgba(255, 255, 255, 0.3);
     margin: 0 1.5rem;
 }
-
+.cross-line-desktop{
+    display: none;
+}
 .red-curve-line {
     margin: 3.8rem 0 3.5rem 0;
 }
@@ -336,7 +354,7 @@ path {
 }
 
 /* -------- SEAT SELECTED DESCRIPTION --------*/
-.seat-selected-description{
+.seat-selected-description {
     background: linear-gradient(129deg, #2b788e, #102336);
     height: 25%;
     width: 100%;
@@ -344,42 +362,109 @@ path {
     bottom: 0;
     display: flex;
 }
-.seat-selected-description > div:first-child{
-    width: 75%
+
+.seat-selected-description>div:first-child {
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1.25rem;
+    padding-left: 3.25rem;
 }
-.seat-selected-description > div:last-child{    
+.seat-selected-description>div:first-child>button{
+    display: none;
+}
+.seat-selected-description>div:last-child {
     width: 25%;
-   display: flex;
-   align-items: center;
+    display: flex;
+    align-items: center;
 }
-.book-button-background{    
+
+.single-booking-description {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+
+}
+
+.seat-icon {
+    width: 1.25rem;
+    height: 1rem;
+}
+
+.calender-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+}
+
+.cart-icon {
+    width: 1.4375rem;
+}
+
+.book-button-background {
     width: 100%;
-    background-color: black;    
+    background-color: black;
     padding: 1rem;
     border-radius: 100% 0 0 100%;
 }
-.book-button-background > div{
+
+.book-button-background>div {
     height: 4.3125rem;
-    width:  4.3125rem;
+    width: 4.3125rem;
     border-radius: 100%;
     background: linear-gradient(120deg, #4fbecd, transparent);
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.book-button-background button{
+
+.book-button-background button {
     height: 4.1875rem;
-    width:  4.1875rem;
+    width: 4.1875rem;
     border-radius: 100%;
     background-color: #4fbecd;
     display: flex;
     justify-content: center;
     align-items: center;
-    
+
 }
-.book-button-background button:disabled{
+
+.book-button-background button:disabled {
     background-color: #333333;
 }
+
+/* MODAL */
+.modal { 
+    display: none;   
+    position: fixed;   
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    max-width: 25rem;
+    width: 90vw;
+    min-height: 12.5rem;  
+    border-radius: 1rem;
+}
+
+.modal-content {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    width: 100%; 
+    height: 12.5rem;
+    
+   
+}
+.modal-content h3{
+    color: black;
+}
+#yes-btn, #no-btn{
+    width: 6rem;
+}
+
 @media only screen and (min-width: 768px) {
     .d-none {
         display: initial;
@@ -387,6 +472,67 @@ path {
 
     #reserve-button,
     #back-button {
+        display: none;
+    }
+    #prev-button{
+        display: block;
+    }
+    .date {
+        width: 27rem;
+        flex-shrink: 0;
+    }
+
+    .date .nav-bar {
+        display: none;
+    }
+
+    .content-container h4 {
+        display: none;
+    }
+
+    .content-container {
+        flex-direction: column-reverse;
+    }
+    .seat-picking-area{
+       max-width: 25rem;
+       margin: 2.5rem auto;
+       
+    }
+    .cross-line-desktop {
+        display: block;
+        border-top: 1px solid rgba(255, 255, 255, 0.3);
+        margin: 0 1.5rem;
+    }
+    .cross-line-mobile{
+        display: none;
+    }
+    .seat-selected-description {
+        background: none;
+        height: 25%;
+        width: 100%;
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        display: flex;
+    }
+    .seat-selected-description>div:first-child {
+        padding: 50px;
+        width: 100%; 
+        align-items: center; 
+              
+    }
+    .seat-selected-description>div:first-child>button{
+        display: block;
+        width: 22rem;       
+    } 
+    .seat-selected-description>div:first-child>.primary-button:disabled >div{      
+        background: linear-gradient(129deg, #f0f4f5, #102336);
+    }
+
+    .seat-selected-description>div:last-child {
+       display: none;
+    }
+    .modal{
         display: none;
     }
 }

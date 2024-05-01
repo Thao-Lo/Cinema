@@ -1,0 +1,105 @@
+.ticket {
+    height: 100vh;
+    width: 100vw;
+    background: linear-gradient(180deg, #194257, black);
+}
+
+.ticket-description {
+    text-align: center;
+    padding: 1.5rem 3.875rem;
+}
+
+.ticket-description p {
+    font-size: 1rem;
+    line-height: 1.6rem;
+}
+
+.ticket-slider {
+    width: 17.75rem;
+    height: 32.6875rem;
+    background-color: none ;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+.masked-image {   
+    width: 17.75rem;
+    height: 32.6875rem;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-image: url(/assests/image/ticket-clippath.png);
+    mask-image: url(/assests/image/ticket-clippath.png);
+    -webkit-mask-position: center;
+    mask-position: center;
+    border: 3px solid red;
+    border-radius: 30px;
+   
+}
+
+.masked-image:first-child {   
+    position: absolute;
+    top: 0;
+    background-color: rgba(255, 255, 255, 0.95);    
+    z-index: 10;
+}
+
+.masked-image:nth-child(2) {    
+    position: absolute;
+    bottom: -28px;
+    -webkit-mask-size:92%;
+    mask-size:92%;
+    background-image: url(/assests/image/drStrange.png);
+    z-index: 5;
+    transform: rotate(9deg);
+    transform-origin: bottom right;
+}
+.masked-image:nth-child(3) {    
+    position: absolute;
+    bottom: 15px;
+    -webkit-mask-size:92%;
+    mask-size:92%;
+    background-image: url(/assests/image/drStrange.png);
+    z-index: 0;
+    transform: rotate(-9deg);
+    transform-origin: bottom right;
+}
+.movie-image {
+    height: 70%;
+    border-bottom: 2px dashed black;
+    background: url(/assests/image/aquaman.png) no-repeat center;
+    background-size: cover;
+    
+}
+
+.ticket-detail {
+    height: 30%;
+    margin: 1.375rem 3.125rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+#date p,
+#time p {
+    color: black;
+}
+
+.screen-time {
+    display: flex;
+    justify-content: space-between;
+}
+
+#date>p:first-child,
+#time>p:first-child {
+    margin-bottom: 0.75rem;
+}
+.bottom-nav{
+    width: 100%;
+    height: 6.25rem;
+    background-color: grey;
+    position: fixed;
+    bottom: 1.25rem;
+}

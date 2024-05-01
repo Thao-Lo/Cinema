@@ -5,15 +5,43 @@ var seatScreen = document.querySelector('.seat-container');
 var reservationButton = document.getElementById('reserve-button');
 var backButton = document.getElementById('back-button');
 var buyButton = document.getElementById('buy-btn');
+var modalHTML = document.querySelector('.modal');
+var yesButton = document.querySelector('.modal #yes-btn');
+var noButton = document.querySelector('.modal #no-btn');
 
 reservationButton.addEventListener('click', function () {
     dateScreen.classList.add('d-none');
     seatScreen.classList.remove('d-none');
 })
+
+//click back from seat screen when seats are selected will display modal
 backButton.addEventListener('click', function () {
+    if (selectedSeats.length) {
+        modalHTML.style.display = 'block';
+    } else {
+        handleBackToDateScreen();
+    
+    }
+
+})
+//click Yes -> back to Date Screen and turn off modal
+yesButton.addEventListener('click', handleBackToDateScreen)
+noButton.addEventListener('click', function () {
+    modalHTML.style.display = 'none';
+})
+
+function handleBackToDateScreen() {
     seatScreen.classList.add('d-none');
     dateScreen.classList.remove('d-none');
-})
+    selectedSeats=[];
+    var selectedSeatsHTML = document.querySelectorAll('.selected');
+    for(var i = 0; i < selectedSeatsHTML.length; i++){
+        selectedSeatsHTML[i].classList.remove('selected');
+    }
+    generateSeatNameAndPrice();
+    modalHTML.style.display = 'none';
+
+}
 
 //Read less - read more 
 var readMore = document.getElementById("read-more");
@@ -124,6 +152,13 @@ let itemWidth = 80;
 let currentItem;
 var bookingItems = document.querySelectorAll('.booking-item');
 
+function sliderCurrentPosition(){
+    bookingItems[1].classList.add('up-one');
+    bookingItems[3].classList.add('up-one');
+    bookingItems[2].classList.add('up-two');
+}
+sliderCurrentPosition();
+
 function scrollLeft() {
     console.log('Scrolling left');
     console.log('Before scrollLeft:', bookingSelection.scrollLeft);
@@ -139,6 +174,8 @@ function scrollLeft() {
     bookingItems[upOne].classList.add('up-one');
     bookingItems[upOneAnother].classList.add('up-one');
     bookingItems[upTwo].classList.add('up-two');
+    // var bookingDateActive = bookingItems[upTwo].querySelector('.booking-date');
+    // bookingDateActive.classList.add('booking-active');  
 
 }
 function scrollRight() {
@@ -155,7 +192,7 @@ function scrollRight() {
 
     bookingItems[upOne].classList.add('up-one');
     bookingItems[upOneAnother].classList.add('up-one');
-    bookingItems[upTwo].classList.add('up-two');
+    bookingItems[upTwo].classList.add('up-two');   
 }
 
 prev.addEventListener('touchstart', scrollLeft)
@@ -184,9 +221,12 @@ const dragStart = (event) => {
 
 function clearMargin() {
     for (var i = 0; i < bookingItems.length; i++) {
+        var bookingDateDiv= bookingItems[i].querySelector('.booking-date>div');
+        bookingDateDiv.classList.remove('booking-active')
         bookingItems[i].classList.remove('up-one', 'up-two');
     }
 }
+
 const dragMove = (event) => {
     if (!isDragging) return
     //Update the scroll position of the slider based on the cursor movement
@@ -196,6 +236,7 @@ const dragMove = (event) => {
     } else {
         clientX = event.clientX;
     }
+   
     bookingSelection.scrollLeft = startScrollLeft - (clientX - startX);
     updateMargin()
 }
@@ -211,6 +252,10 @@ const updateMargin = () => {
     bookingItems[upOne].classList.add('up-one');
     bookingItems[upOneAnother].classList.add('up-one');
     bookingItems[upTwo].classList.add('up-two');
+   
+    bookingItems[upTwo].querySelector('.booking-date>div').classList.add('booking-active');
+    
+
 }
 const dragEnd = () => {
     isDragging = false;
@@ -243,18 +288,45 @@ var seatRowSixHTML = document.querySelector("#seat-row-six");
 var seatSelectedNameHTML = document.getElementById('selected-seats-name');
 var totalPriceHTML = document.getElementById('total-price');
 
+var buyButtonMobile = document.getElementById('buy-btn-mobile');
+var buyButtonDesktop = document.getElementById('buy-btn-desktop');
+
 var selectedSeats = []
 var totalPrice = 0;
 
-function generateSeatNameAndPrice(){
+function generateSeatNameAndPrice() {
     //clear inner HTML to generate the seats again when loop through the array to avoid duplicate 'seat1/ seat 1 seat 3/ seat1 seat3 seat4'
+    
+    if(selectedSeats.length === 0){
+        seatSelectedNameHTML.innerHTML = "Please select seats";
+        totalPriceHTML.innerHTML = '0';
+        return;
+    }
     seatSelectedNameHTML.innerHTML = '';
-    totalPriceHTML.innerHTML ='';
-
-    for(var i = 0; i <selectedSeats.length; i++){
+    totalPriceHTML.innerHTML = '';
+    for (var i = 0; i < selectedSeats.length; i++) {
         var currentSeat = selectedSeats[i];
-        seatSelectedNameHTML.innerHTML = seatSelectedNameHTML.innerHTML + currentSeat.id;
+        seatSelectedNameHTML.innerHTML = seatSelectedNameHTML.innerHTML + " " + currentSeat.id.replace(/[^0-9]/g, '');
         totalPriceHTML.innerHTML = +totalPriceHTML.innerHTML + +currentSeat.price;
+        console.log(currentSeat.id.replace(/[^0-9]/g, ''));
+    }
+    /*
+    var id = selectedSeats[i].id.replace(/[^0-9]/g, '');
+    if(id)
+    */
+}
+//to display "please select seat" on screen by default => call the function.
+generateSeatNameAndPrice();
+
+
+//<button disabled> == true 
+function updateBuyBtn() {
+    if (selectedSeats.length !== 0) {
+        buyButtonMobile.disabled = false;
+        buyButtonDesktop.disabled = false;
+    } else {
+        buyButtonMobile.disabled = true;
+        buyButtonDesktop.disabled = true;
     }
 }
 
@@ -265,10 +337,22 @@ function handleSeatClick(event) {
     var isVip = event.target.dataset.isVip;
 
     console.log(available);
-    if (available === 'true') {        
-        if(event.target.classList.value.includes('selected')){
+    if (available === 'true') {
+        if (event.target.classList.value.includes('selected')) {
             event.target.classList.remove('selected');
-        }else{
+            var removeSeat = {
+                id: id,
+                price: price,
+                isVip: isVip
+            }
+            for (var i = 0; i < selectedSeats.length; i++) {
+                if (selectedSeats[i].id == removeSeat.id) {
+                    console.log("removed seat id:" + removeSeat.id);
+                    selectedSeats.splice(i, 1);
+                }
+            }
+
+        } else {
             event.target.classList.add('selected');
             var newSeat = {
                 id: id,
@@ -277,10 +361,14 @@ function handleSeatClick(event) {
             }
             selectedSeats.push(newSeat);
             console.log(selectedSeats);
-            generateSeatNameAndPrice();
+
         }
+        generateSeatNameAndPrice();
+        updateBuyBtn()
     }
+
 }
+
 
 function generateSeats(rowData, seatRowHTML) {
     for (var i = 0; i < rowData.length; i++) {

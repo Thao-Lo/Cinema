@@ -16,85 +16,96 @@
 <body>
     <div class="container">
         <div class="date">
-            <div class="content-container ">
-                <h1>
-                    Aquaman 2                    
-                </h1>
-                <h2>Aquaman and The Lost Kingdom</h2>
-                <p>After failing to defeat Aquaman the first time, Black Manta wields the power of the mythic Black
-                    Trident
-                    <span id="read-more">... read more</span>
-                    <span id="text-more"> to unleash an ancient and malevolent
-                        force. Hoping to end his reign of terror, Aquaman forges an unlikely alliance with Orm.
-                    </span>
-                    <span id="read-less">read less</span>
-                </p>
+            <nav class='nav-bar'>
+                <div class="nav-icon-container">
+                    <div class=" white-opacity-20">
+                        <img src="/assests/image/back-icon.png" alt="back icon">
+                    </div>
+                </div>
+                <div class="nav-icon-container">
+                    <div class=" white-opacity-20">
+                        <img src="/assests/image/3-vertical-dot.png" alt="">
+                    </div>
+                </div>
+            </nav>
+            <div class="content-container">
+                <div>
+                    <h1>
+                        Aquaman 2
+                    </h1>
+                    <h2>Aquaman and The Lost Kingdom</h2>
+                    <p>After failing to defeat Aquaman the first time, Black Manta wields the power of the mythic Black
+                        Trident
+                        <span id="read-more">... read more</span>
+                        <span id="text-more"> to unleash an ancient and malevolent
+                            force. Hoping to end his reign of terror, Aquaman forges an unlikely alliance with Orm.
+                        </span>
+                        <span id="read-less">read less</span>
+                    </p>
+                </div>
 
                 <h4>Select Date and Time</h4>
                 <div id="booking-slider">
                     <div class="booking-container">
-
                     </div>
                 </div>
 
-                <button id="prev"> < </button>
-                <button id="next">></button>
-                <button id="reserve-button" class="primary-button">
+                <button id="prev">
+                    < </button>
+                        <button id="next">></button>
+                        <button id="reserve-button" class="primary-button">
                             <div>
                                 Reservation
                             </div>
                         </button>
-
             </div>
         </div>
 
         <!-- SEAT CONTAINER START -->
 
-        <div class="seat-container  d-none ">
-            <nav class='seat-nav-bar'>
+        <div class="seat-container d-none ">
+            <nav class='nav-bar'>
                 <div id="back-button" class="nav-icon-container">
-                    <div>
+                    <div class="grey-icon-bg">
+                        <img src="/assests/image/back-icon.png" alt="back icon">
+                    </div>
+                </div>
+                <div id="prev-button" class="nav-icon-container">
+                    <div class="grey-icon-bg">
                         <img src="/assests/image/back-icon.png" alt="back icon">
                     </div>
                 </div>
                 <p>Choose your seats</p>
                 <div class="nav-icon-container">
-                    <div>
+                    <div class="grey-icon-bg">
                         <img src="/assests/image/calender-icon.png" alt="">
                     </div>
                 </div>
             </nav>
-            <div class="cross-line"></div>
-            <div>
+            <div class="cross-line-mobile"></div>
+
+            <div class="seat-picking-area">
                 <!-- RED CURVE LINE -->
-
-
                 <div class="seat-picker">
                     <div class="red-curve-line">
                         <svg viewBox="0 0 336 36" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M3 33.5V33.5C109.147 -7.67231 226.853 -7.67231 333 33.5V33.5" stroke="#00FFE0"
                                 stroke-width="5" stroke-linecap="round" />
                         </svg>
-
                     </div>
                     <div id="seat-row-one" class="seat-row justify-around">
                         <div class="seat-row">
-
                         </div>
                         <div class="seat-row">
-
                         </div>
                     </div>
                     <div id="seat-row-two" class="seat-row justify-between">
                         <div class="seat-row">
-
                         </div>
                         <div class="seat-row">
-
                         </div>
                     </div>
                     <div id="seat-row-three" class="seat-row">
-
                     </div>
                     <div id="seat-row-four" class="seat-row">
 
@@ -108,43 +119,73 @@
 
                     </div>
                 </div>
-            </div>
-            <div class="seat-description">
-                <div class="availability">
-                    <i class="dot-icon"> &#x2022;</i>
-                    <p>Available</p>
-                </div>
-                <div class="availability">
-                    <i class="dot-icon"> &#x2022;</i>
-                    <p>Reserved</p>
-                </div>
-                <div class="availability">
-                    <i class="dot-icon"> &#x2022;</i>
-                    <p>Selected</p>
-                </div>
-            </div>
 
+                <div class="seat-description">
+                    <div class="availability">
+                        <i class="dot-icon"> &#x2022;</i>
+                        <p>Available</p>
+                    </div>
+                    <div class="availability">
+                        <i class="dot-icon"> &#x2022;</i>
+                        <p>Reserved</p>
+                    </div>
+                    <div class="availability">
+                        <i class="dot-icon"> &#x2022;</i>
+                        <p>Selected</p>
+                    </div>
+                </div>
+            </div>
+            <div class="cross-line-desktop"></div>
             <!-- SEAT SELECTED DESCRIPTION -->
             <div class="seat-selected-description">
                 <div>
-                    <p id="selected-seats-name"></p>
-                    <p id="total-price"></p>
-                </div>
-                <div>                   
-                        <div class="book-button-background">
-                            <div>
-                                <button id="buy-btn" disabled>
-                                    Buy
-                                </button>   
-                            </div>              
+                    <div class="single-booking-description">
+                        <img class="calender-icon" src="/assests/image/booked-calender-icon.png" alt="calender icon">
+                        <p>June 21st, 2023 &#x2022; 6 p.m </p>
                     </div>
-                   
+                    <div class="single-booking-description">
+                        <img class="seat-icon" src="/assests/image/bookedSeat.png" alt="booked seats">
+                        <p><span id="vip-section"></span> </p>
+                        <p ><span id="selected-seats-name"></span></p>
+                    </div>
+                    <div class="single-booking-description">
+                        <img class="cart-icon" src="/assests/image/ion_cart.png" alt="cart">
+                        <p> Total: $<span id="total-price">0</span> </p>
+                    </div>
+                    <button id="buy-btn-desktop" class="primary-button" disabled>
+                        <div>
+                            Buy
+                        </div>
+                    </button>
+
+                </div>
+                <div>
+                    <div class="book-button-background">
+                        <div>
+                            <button id="buy-btn-mobile" disabled>
+                                Buy
+                            </button>
+                        </div>
+                    </div>
+
                 </div>
             </div>
 
             <!-- <button id="back-button">back</button> -->
         </div>
 
+        <!-- MODAL start-->
+        <div class="modal">
+            <div class="modal-content">
+                <h3>Are you sure?</h3>
+                <div>
+                    <button id="yes-btn" class="primary-button">Yes</button>
+                    <button id="no-btn" class="primary-button">Cancel</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- MODAL end-->
         <!-- SEAT CONTAINER END -->
     </div>
     <script src="/data/seat_data.js"></script>
