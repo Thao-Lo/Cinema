@@ -1,0 +1,68 @@
+body {
+    width: 100vw;
+    height: 100vh;
+}
+
+.trailer-background {
+    width: 100%;
+    height: 100%;
+    background-color: rgb(12, 12, 12);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.trailer-section {
+    background-color: gray;
+    width: 90%;
+    height: 70%;
+}
+
+.nav-menu {
+    margin-right: 4rem;
+    display: flex;
+    justify-content: end;
+    gap: 2rem;
+}
+
+.movie-details {
+    text-align: right;
+    margin-top: 6rem;
+    margin-right: 7rem;
+}
+
+.movie-title {}
+
+.movie-type {
+    display: flex;
+    justify-content: end;
+    gap: 2rem;
+}
+
+.movie-util {
+    display: flex;
+    justify-content: end;
+    gap: 0.5rem;
+}
+
+.movie-desciption {
+    width: 100%;
+    display: flex;
+    justify-content: end;
+
+}
+.movie-desciption >p{
+    width:40%;
+}
+.rating{
+    display: flex;
+    justify-content: end;
+}
+.percetage{
+
+}
+.cta-btn{
+    display: flex;
+    justify-content: end;
+    gap: 1rem;
+}
