@@ -352,8 +352,13 @@ function handleSeatClick(event) {
                 }
             }
 
-        } else {
+        } else {            
             event.target.classList.add('selected');
+            //animation
+            event.target.classList.add('scale-up');
+            setTimeout(function(){
+                event.target.classList.remove('scale-up');
+            },1000)
             var newSeat = {
                 id: id,
                 price: price,
@@ -365,6 +370,12 @@ function handleSeatClick(event) {
         }
         generateSeatNameAndPrice();
         updateBuyBtn()
+    }else{
+        //animation - seat booked already
+        event.target.classList.add('vibration');
+        setTimeout(function(){
+            event.target.classList.remove('vibration')
+        },1000)
     }
 
 }

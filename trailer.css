@@ -1,68 +1,302 @@
 body {
     width: 100vw;
     height: 100vh;
+    background: url(/assests/image/trailer-bg.jpg) no-repeat left;
+    background-attachment: fixed;
+    background-size: contain;
 }
 
 .trailer-background {
     width: 100%;
     height: 100%;
-    background-color: rgb(12, 12, 12);
+    background: linear-gradient(77deg, rgb(193, 75, 70, 0.9) 0%, rgb(140, 71, 158, 0.9) 40%, rgb(117, 61, 163, 1) 60%);
     display: flex;
     justify-content: center;
     align-items: center;
+
 }
 
-.trailer-section {
-    background-color: gray;
+.trailer-section-bg {
+    background: url(/assests/image/trailer-bg.jpg) no-repeat left bottom;
+    background-size: contain;
     width: 90%;
     height: 70%;
 }
 
+.trailer-section {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(269deg, black 46%, transparent 70%);
+}
+
+#nav-btn {
+    display: none;
+}
+
 .nav-menu {
+    padding-top: 2.5rem;
     margin-right: 4rem;
     display: flex;
     justify-content: end;
+    align-items: center;
     gap: 2rem;
+    list-style-type: none;
+    cursor: pointer;
+}
+
+.nav-item:last-child {
+    width: 2rem;
+    height: 2rem;
+}
+
+.nav-item:last-child>a>img {
+    width: 100%;
+    height: 100%;
+}
+
+#trailer-mobile {
+    display: none;
 }
 
 .movie-details {
     text-align: right;
-    margin-top: 6rem;
+    margin-top: 4.5rem;
     margin-right: 7rem;
 }
 
-.movie-title {}
+.movie-title {
+    font-size: 3rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+}
 
 .movie-type {
     display: flex;
     justify-content: end;
-    gap: 2rem;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.movie-type>div {
+    background-color: rgb(117, 61, 163, 0.5);
+    padding: 0.25rem 1rem;
+    border-radius: 1rem;
 }
 
 .movie-util {
     display: flex;
     justify-content: end;
     gap: 0.5rem;
+    margin-bottom: 1rem;
+
+}
+
+.movie-util>div {
+    font-size: 0.9rem;
+    color: gray;
 }
 
 .movie-desciption {
     width: 100%;
     display: flex;
     justify-content: end;
+    margin-bottom: 1rem;
 
 }
-.movie-desciption >p{
-    width:40%;
+
+.movie-desciption>p {
+    width: 35%;
 }
-.rating{
+
+
+.rating {
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    margin-bottom: 1rem;
+
+}
+
+.rating>div:first-child {
     display: flex;
     justify-content: end;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 2.5rem;
+    line-height: 2.5rem;
 }
-.percetage{
+
+.rating>div:last-child {
+    font-size: 0.8rem;
+    color: gray;
 
 }
-.cta-btn{
+
+.cta-btn {
     display: flex;
     justify-content: end;
     gap: 1rem;
+
+}
+
+.cta-btn>button {
+    display: flex;
+    justify-content: space-between;
+    background: linear-gradient(90deg, #3715d2, #b8425b 75%);
+    width: 9rem;
+    padding: 0.5rem 0.75rem;
+    border-radius: 4rem;
+    cursor: pointer;
+
+}
+
+.cta-btn>button:hover {
+    animation: changeBgDeg 0.3s ease-in-out;
+}
+
+@keyframes changeBgDeg {
+    0% {
+        background: linear-gradient(90deg, #3715d2, #b8425b 75%);
+    }
+
+    25% {
+        background: linear-gradient(180deg, #3715d2, #b8425b 75%);
+    }
+
+    50% {
+        background: linear-gradient(270deg, #3715d2, #b8425b 75%);
+    }
+
+    75% {
+        background: linear-gradient(360deg, #3715d2, #b8425b 75%2);
+    }
+
+    100% {
+        background: linear-gradient(450deg, #3715d2, #b8425b 75%);
+    }
+}
+
+.btn-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+    border: 1px solid white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-icon>i {
+    font-size: 90%;
+}
+
+.trailer-modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: transparent;
+
+}
+
+.close-trailer {
+    background-color: #3715d2;
+    position: fixed;
+    bottom: -1rem;
+    right: 0;
+
+
+}
+
+
+
+@media only screen and (max-width:810px) {
+    .d-block {
+        display: block !important;
+    }
+
+    .trailer-section-bg {
+        background:linear-gradient(to bottom, rgba(0, 0, 0, 0.8) 70%,transparent), url(/assests/image/trailer-bg.jpg) no-repeat bottom;
+        background-size: contain;
+        width: 90%;
+        height: 95%;
+    }
+
+    .trailer-section {
+        background: rgba(0, 0, 0, 0.4);
+    }
+
+    #nav-btn {
+        display: block;
+        background-color: transparent;
+        width: 2rem;
+        height: 2rem;
+    }
+    #nav-btn>i{       
+        color: white;
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+    }
+    .nav-menu {
+        position: absolute;
+        display: none;
+        background-color: rgb(0, 0, 0,0.8);
+        padding: 10px;
+        width: 90%;
+        box-shadow: 0px 2px 3px 0px white;
+
+    }
+
+    .nav-item {
+        margin-left: 10px;
+        margin-bottom: 10px;
+        border-bottom: 1px solid white;
+      
+    }
+    .nav-item:last-child{
+        border-bottom: none;
+    }
+
+    .nav-item>a,
+    .nav-item>i {
+        
+        color: white
+    }
+
+    .nav-item:active {}
+
+    #trailer-mobile {
+        display: block;
+        width: 100%;
+        height: 300px;
+    }
+    #trailer-iframe{
+        width: 100%;
+        height: 100%;       
+    }
+    .movie-details {      
+      margin: 1rem;
+    }
+    .movie-type>div{
+        font-size: 0.9rem;
+    }
+    .movie-title {
+        width: 100%;
+         height: 80px;
+        font-size: 2rem;  
+        display: flex;
+        align-items: center;
+       
+    }
+    
+    .movie-util>div {       
+        font-size: 0.9rem;
+    }
+    .movie-desciption>p {
+        width: 100%;
+    }
+    #watch-trailer-btn{
+        display: none;
+    }
 }
