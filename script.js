@@ -20,7 +20,7 @@ backButton.addEventListener('click', function () {
         modalHTML.style.display = 'block';
     } else {
         handleBackToDateScreen();
-    
+
     }
 
 })
@@ -33,9 +33,11 @@ noButton.addEventListener('click', function () {
 function handleBackToDateScreen() {
     seatScreen.classList.add('d-none');
     dateScreen.classList.remove('d-none');
-    selectedSeats=[];
+    selectedSeats = [];
+    selectedStandardSeatId = [];
+     selectedVipSeatId = [];
     var selectedSeatsHTML = document.querySelectorAll('.selected');
-    for(var i = 0; i < selectedSeatsHTML.length; i++){
+    for (var i = 0; i < selectedSeatsHTML.length; i++) {
         selectedSeatsHTML[i].classList.remove('selected');
     }
     generateSeatNameAndPrice();
@@ -152,7 +154,7 @@ let itemWidth = 80;
 let currentItem;
 var bookingItems = document.querySelectorAll('.booking-item');
 
-function sliderCurrentPosition(){
+function sliderCurrentPosition() {
     bookingItems[1].classList.add('up-one');
     bookingItems[3].classList.add('up-one');
     bookingItems[2].classList.add('up-two');
@@ -192,7 +194,7 @@ function scrollRight() {
 
     bookingItems[upOne].classList.add('up-one');
     bookingItems[upOneAnother].classList.add('up-one');
-    bookingItems[upTwo].classList.add('up-two');   
+    bookingItems[upTwo].classList.add('up-two');
 }
 
 prev.addEventListener('touchstart', scrollLeft)
@@ -221,7 +223,7 @@ const dragStart = (event) => {
 
 function clearMargin() {
     for (var i = 0; i < bookingItems.length; i++) {
-        var bookingDateDiv= bookingItems[i].querySelector('.booking-date>div');
+        var bookingDateDiv = bookingItems[i].querySelector('.booking-date>div');
         bookingDateDiv.classList.remove('booking-active')
         bookingItems[i].classList.remove('up-one', 'up-two');
     }
@@ -236,7 +238,7 @@ const dragMove = (event) => {
     } else {
         clientX = event.clientX;
     }
-   
+
     bookingSelection.scrollLeft = startScrollLeft - (clientX - startX);
     updateMargin()
 }
@@ -252,9 +254,9 @@ const updateMargin = () => {
     bookingItems[upOne].classList.add('up-one');
     bookingItems[upOneAnother].classList.add('up-one');
     bookingItems[upTwo].classList.add('up-two');
-   
+
     bookingItems[upTwo].querySelector('.booking-date>div').classList.add('booking-active');
-    
+
 
 }
 const dragEnd = () => {
@@ -285,7 +287,11 @@ var seatRowFourHTML = document.querySelector("#seat-row-four");
 var seatRowFiveHTML = document.querySelector("#seat-row-five");
 var seatRowSixHTML = document.querySelector("#seat-row-six");
 
-var seatSelectedNameHTML = document.getElementById('selected-seats-name');
+var vipSection = document.querySelector('.vip-section');
+var standardSection = document.querySelector('.standard-section')
+var seatSelectedStandardHTML = document.getElementById('standard-seat');
+var seatSelectedVIPHTML = document.getElementById('vip-seat');
+console.log("type of span: ", seatSelectedVIPHTML);
 var totalPriceHTML = document.getElementById('total-price');
 
 var buyButtonMobile = document.getElementById('buy-btn-mobile');
@@ -293,23 +299,36 @@ var buyButtonDesktop = document.getElementById('buy-btn-desktop');
 
 var selectedSeats = []
 var totalPrice = 0;
+var selectedStandardSeatId = [];
+var selectedVipSeatId = [];
 
 function generateSeatNameAndPrice() {
     //clear inner HTML to generate the seats again when loop through the array to avoid duplicate 'seat1/ seat 1 seat 3/ seat1 seat3 seat4'
-    
-    if(selectedSeats.length === 0){
-        seatSelectedNameHTML.innerHTML = "Please select seats";
+
+    if (selectedSeats.length === 0) {       
+        seatSelectedStandardHTML.innerHTML = "Please select seats"; 
+        seatSelectedVIPHTML.innerHTML = "Please select seats"; 
+        vipSection.innerHTML = '';
+        standardSection.innerHTML = '';
         totalPriceHTML.innerHTML = '0';
         return;
     }
-    seatSelectedNameHTML.innerHTML = '';
+    standardSection.innerHTML = 'Standard Seats: ';
+    vipSection.innerHTML = 'Vip Seats: ';
     totalPriceHTML.innerHTML = '';
     for (var i = 0; i < selectedSeats.length; i++) {
         var currentSeat = selectedSeats[i];
-        seatSelectedNameHTML.innerHTML = seatSelectedNameHTML.innerHTML + " " + currentSeat.id.replace(/[^0-9]/g, '');
+        // seatSelectedStandardHTML.innerHTML = seatSelectedStandardHTML.innerHTML + " " + currentSeat.id.replace(/[^0-9]/g, '');
         totalPriceHTML.innerHTML = +totalPriceHTML.innerHTML + +currentSeat.price;
-        console.log(currentSeat.id.replace(/[^0-9]/g, ''));
+        console.log("selected seat" + currentSeat.id.replace(/[^0-9]/g, ''));
     }
+    //sort array
+    displaySeatNumber(selectedStandardSeatId, seatSelectedStandardHTML)
+    displaySeatNumber(selectedVipSeatId, seatSelectedVIPHTML)
+    console.log("slected standard seat id:", selectedStandardSeatId);
+    console.log("slected VIP seat id:", selectedVipSeatId);
+    console.log(selectedSeats);
+
     /*
     var id = selectedSeats[i].id.replace(/[^0-9]/g, '');
     if(id)
@@ -335,7 +354,7 @@ function handleSeatClick(event) {
     var id = event.target.dataset.id;
     var price = event.target.dataset.price;
     var isVip = event.target.dataset.isVip;
-
+    console.log("check is-vip: " + isVip);
     console.log(available);
     if (available === 'true') {
         if (event.target.classList.value.includes('selected')) {
@@ -352,35 +371,95 @@ function handleSeatClick(event) {
                 }
             }
 
-        } else {            
+            //remove seat id in seat number array
+            var removeSeatId = parseInt(removeSeat.id.replace(/[^0-9]/g, ''));
+            if (selectedStandardSeatId.includes(removeSeatId)) {
+                const index = selectedStandardSeatId.indexOf(removeSeatId);
+                selectedStandardSeatId.splice(index, 1)
+            }
+            if (selectedVipSeatId.includes(removeSeatId)) {
+                const indexVip = selectedVipSeatId.indexOf(removeSeatId);
+                selectedVipSeatId.splice(indexVip, 1)
+            }
+
+
+        } else {
             event.target.classList.add('selected');
             //animation
             event.target.classList.add('scale-up');
-            setTimeout(function(){
+            setTimeout(function () {
                 event.target.classList.remove('scale-up');
-            },1000)
+            }, 1000)
             var newSeat = {
                 id: id,
                 price: price,
                 isVip: isVip
             }
             selectedSeats.push(newSeat);
-            console.log(selectedSeats);
+            console.log("new seat:", newSeat);
+            console.log("is Vip: " + newSeat.isVip);
+
+            //handle display seat number & isVip
+            //add seat number into new array
+            let newSeatId = parseInt(newSeat.id.replace(/[^0-9]/g, ''));
+            if (newSeat.isVip == "false") {
+                selectedStandardSeatId.push(newSeatId);
+            }
+            else {
+                selectedVipSeatId.push(newSeatId);
+            }
 
         }
         generateSeatNameAndPrice();
         updateBuyBtn()
-    }else{
+    } else {
         //animation - seat booked already
         event.target.classList.add('vibration');
-        setTimeout(function(){
+        setTimeout(function () {
             event.target.classList.remove('vibration')
-        },1000)
+        }, 1000)
     }
 
 }
+function sortSeatArray(arr) {
+    return arr.sort((a, b) => a - b);
+}
+function displaySeatNumber(array, seatHTML) {
+    sortSeatArray(array);
+    let nums = [];
+    seatHTML.innerHTML = '';
+    for (var i = 0; i < array.length; i++) {
+        if (nums.length === 0 || array[i] === (nums[nums.length - 1] + 1)) {
+            nums.push(array[i]);
+        } else {
+            if (nums.length >= 3) {
+                seatHTML.innerHTML = seatHTML.innerHTML + " " + `${nums[0]} - ${nums[nums.length - 1]}` + ",";
+                console.log(`${nums[0]} - ${nums[nums.length - 1]}`);
+            } else {
+                for (var j = 0; j < nums.length; j++) {
+                    seatHTML.innerHTML = seatHTML.innerHTML + " " + nums[j] + ",";
+                    console.log(nums[j]);
+                }
+            }
+            nums = [];
+            nums.push(array[i]);
+        }
+   // seatSelectedStandardHTML.innerHTML = seatSelectedStandardHTML.innerHTML + " " + currentSeat.id.replace(/[^0-9]/g, '');
+        if (i == array.length - 1) {
+            if (nums.length >= 3) {
+                seatHTML.innerHTML = seatHTML.innerHTML + " " + `${nums[0]} - ${nums[nums.length - 1]}` + ",";
+                console.log(`${nums[0]} - ${nums[nums.length - 1]}`);
+            } else {
+                for (var j = 0; j < nums.length; j++) {
+                    seatHTML.innerHTML = seatHTML.innerHTML + " " + nums[j] + ",";
+                    console.log(nums[j]);
+                }
+            }
+        }
 
+    }
 
+}
 function generateSeats(rowData, seatRowHTML) {
     for (var i = 0; i < rowData.length; i++) {
         var currentSeat = rowData[i]
