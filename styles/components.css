@@ -1,0 +1,26 @@
+.page-loading{
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(180deg, #194257, black);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.spinnerOne {
+    width: 5rem;
+    height: 5rem;
+    border: 5px dashed #87e1ed;
+    border-radius: 50%;
+    border-left: 5px dashed transparent;
+    animation: spinnerOne infinite 1s linear forwards;
+}
+
+@keyframes spinnerOne {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}

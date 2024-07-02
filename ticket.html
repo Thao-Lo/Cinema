@@ -8,11 +8,16 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:wght@400;500;700&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="ticket.css">
+        <link rel="stylesheet" href="/styles/style.css">
+        <link rel="stylesheet" href="/styles/ticket.css">
+        <link rel="stylesheet" href="/styles/components.css">
 </head>
 
 <body>
+    <div class="page-loading">
+        <div class="spinnerOne"></div>
+    </div>
+    <div class="page">
     <div class="ticket">
         <nav class='nav-bar'>
             <div class="nav-icon-container">
@@ -63,16 +68,48 @@
 
         </div>
         <nav class="bottom-nav">
-            <div class="nav-item"><img src="/assests/icon/home.png" alt="home icon" /></div>
-            <div class="nav-item"><img src="/assests//icon/location.png" alt="location icon" /></div>
             <div class="nav-item">
-                <img src="/assests/icon/Menu.png" alt="menu icon" />
+                <a href="movies.html">
+                    <img src="/assests/icon/home.png" alt="home icon" />
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="">
+                    <img src="/assests//icon/location.png" alt="location icon" />
+                </a>
+            </div>
+            <div class="nav-item active-nav-item">
+                <a href="ticket.html" class="active-nav-border">
+                    <img src="/assests/icon/Menu.png" alt="menu icon" />
+                </a>
             </div>
 
-            <div class="nav-item"><img src="/assests/icon/ticket.png" alt="ticket icon" /></div>
-            <div class="nav-item"><img src="/assests/icon/account.png" alt="account icon" /></div>
+            <div class="nav-item">
+                <a href="index.html">
+                    <img src="/assests/icon/ticket.png" alt="ticket icon" />
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="trailer.html">
+                    <img src="/assests/icon/account.png" alt="account icon" />
+                </a>
+            </div>
         </nav>
     </div>
+    </div>
 </body>
-
+<script src="/scripts/components.js"></script>
+<script>
+    
+    // let maskedImages = document.querySelectorAll('.masked-image');
+    // console.log('object :>> ', maskedImages);
+    // function ticketAnimation(){
+    //     maskedImages.forEach(item=>
+    //     item.classList.remove("ticket-animation")
+    // )}
+    // document.addEventListener('DOMContentLoaded', ()=>{
+    //     setTimeout((ticketAnimation),1000)
+    // })
+    
+</script>
 </html>

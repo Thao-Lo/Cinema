@@ -19,7 +19,7 @@ var seat_row_one = [
     },
     {
         id: 'seat_4',
-        available: false,
+        available: true,
         isVip: false,
         price: 7,
     },

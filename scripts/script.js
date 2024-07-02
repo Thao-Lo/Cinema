@@ -328,11 +328,7 @@ function generateSeatNameAndPrice() {
     console.log("slected standard seat id:", selectedStandardSeatId);
     console.log("slected VIP seat id:", selectedVipSeatId);
     console.log(selectedSeats);
-
-    /*
-    var id = selectedSeats[i].id.replace(/[^0-9]/g, '');
-    if(id)
-    */
+   
 }
 //to display "please select seat" on screen by default => call the function.
 generateSeatNameAndPrice();
@@ -343,6 +339,10 @@ function updateBuyBtn() {
     if (selectedSeats.length !== 0) {
         buyButtonMobile.disabled = false;
         buyButtonDesktop.disabled = false;
+        //redirect to another page
+        buyButtonDesktop.addEventListener('click', ()=>{
+            window.location.href = "ticket.html";
+        })
     } else {
         buyButtonMobile.disabled = true;
         buyButtonDesktop.disabled = true;
@@ -427,17 +427,18 @@ function sortSeatArray(arr) {
 function displaySeatNumber(array, seatHTML) {
     sortSeatArray(array);
     let nums = [];
+    let result = '';
     seatHTML.innerHTML = '';
     for (var i = 0; i < array.length; i++) {
         if (nums.length === 0 || array[i] === (nums[nums.length - 1] + 1)) {
             nums.push(array[i]);
         } else {
             if (nums.length >= 3) {
-                seatHTML.innerHTML = seatHTML.innerHTML + " " + `${nums[0]} - ${nums[nums.length - 1]}` + ",";
+                result += `${nums[0]} - ${nums[nums.length - 1]}, `;
                 console.log(`${nums[0]} - ${nums[nums.length - 1]}`);
             } else {
                 for (var j = 0; j < nums.length; j++) {
-                    seatHTML.innerHTML = seatHTML.innerHTML + " " + nums[j] + ",";
+                    result += `${nums[j]}, `;
                     console.log(nums[j]);
                 }
             }
@@ -447,17 +448,20 @@ function displaySeatNumber(array, seatHTML) {
    // seatSelectedStandardHTML.innerHTML = seatSelectedStandardHTML.innerHTML + " " + currentSeat.id.replace(/[^0-9]/g, '');
         if (i == array.length - 1) {
             if (nums.length >= 3) {
-                seatHTML.innerHTML = seatHTML.innerHTML + " " + `${nums[0]} - ${nums[nums.length - 1]}` + ",";
+                result += `${nums[0]} - ${nums[nums.length - 1]}, `;
                 console.log(`${nums[0]} - ${nums[nums.length - 1]}`);
             } else {
                 for (var j = 0; j < nums.length; j++) {
-                    seatHTML.innerHTML = seatHTML.innerHTML + " " + nums[j] + ",";
+                    result += `${nums[j]}, `;
                     console.log(nums[j]);
                 }
             }
-        }
+        }        
 
     }
+    //remove 2nd to last character, to remove comma and space at the end of seat display
+    result = result.slice(0,-2);
+    seatHTML.innerHTML = result;
 
 }
 function generateSeats(rowData, seatRowHTML) {
