@@ -9,6 +9,13 @@ var modalHTML = document.querySelector('.modal');
 var yesButton = document.querySelector('.modal #yes-btn');
 var noButton = document.querySelector('.modal #no-btn');
 
+var readMore = document.getElementById("read-more");
+var readLess = document.getElementById("read-less");
+var textMore = document.getElementById("text-more");
+var textContent = document.querySelector(".content-container p");
+
+var bookingSelection = document.querySelector('.booking-container')
+
 reservationButton.addEventListener('click', function () {
     dateScreen.classList.add('d-none');
     seatScreen.classList.remove('d-none');
@@ -22,7 +29,6 @@ backButton.addEventListener('click', function () {
         handleBackToDateScreen();
 
     }
-
 })
 //click Yes -> back to Date Screen and turn off modal
 yesButton.addEventListener('click', handleBackToDateScreen)
@@ -35,22 +41,16 @@ function handleBackToDateScreen() {
     dateScreen.classList.remove('d-none');
     selectedSeats = [];
     selectedStandardSeatId = [];
-     selectedVipSeatId = [];
+    selectedVipSeatId = [];
     var selectedSeatsHTML = document.querySelectorAll('.selected');
     for (var i = 0; i < selectedSeatsHTML.length; i++) {
         selectedSeatsHTML[i].classList.remove('selected');
     }
     generateSeatNameAndPrice();
     modalHTML.style.display = 'none';
-
 }
 
 //Read less - read more 
-var readMore = document.getElementById("read-more");
-var readLess = document.getElementById("read-less");
-var textMore = document.getElementById("text-more");
-var textContent = document.querySelector(".content-container p");
-
 readMore.onclick = function (event) {
     readMore.style.display = "none";
     readLess.style.display = "inline";
@@ -116,8 +116,6 @@ var slots = [
     },
 ]
 
-
-var bookingSelection = document.querySelector('.booking-container')
 for (var i = 0; i < slots.length; i++) {
     var bookingItem = document.createElement('div');
     var dateContainer = document.createElement('div');
@@ -305,9 +303,9 @@ var selectedVipSeatId = [];
 function generateSeatNameAndPrice() {
     //clear inner HTML to generate the seats again when loop through the array to avoid duplicate 'seat1/ seat 1 seat 3/ seat1 seat3 seat4'
 
-    if (selectedSeats.length === 0) {       
-        seatSelectedStandardHTML.innerHTML = "Please select seats"; 
-        seatSelectedVIPHTML.innerHTML = "Please select seats"; 
+    if (selectedSeats.length === 0) {
+        seatSelectedStandardHTML.innerHTML = "Please select seats";
+        seatSelectedVIPHTML.innerHTML = "Please select seats";
         vipSection.innerHTML = '';
         standardSection.innerHTML = '';
         totalPriceHTML.innerHTML = '0';
@@ -328,7 +326,7 @@ function generateSeatNameAndPrice() {
     console.log("slected standard seat id:", selectedStandardSeatId);
     console.log("slected VIP seat id:", selectedVipSeatId);
     console.log(selectedSeats);
-   
+
 }
 //to display "please select seat" on screen by default => call the function.
 generateSeatNameAndPrice();
@@ -340,7 +338,7 @@ function updateBuyBtn() {
         buyButtonMobile.disabled = false;
         buyButtonDesktop.disabled = false;
         //redirect to another page
-        buyButtonDesktop.addEventListener('click', ()=>{
+        buyButtonDesktop.addEventListener('click', () => {
             window.location.href = "ticket.html";
         })
     } else {
@@ -382,7 +380,6 @@ function handleSeatClick(event) {
                 selectedVipSeatId.splice(indexVip, 1)
             }
 
-
         } else {
             event.target.classList.add('selected');
             //animation
@@ -408,7 +405,6 @@ function handleSeatClick(event) {
             else {
                 selectedVipSeatId.push(newSeatId);
             }
-
         }
         generateSeatNameAndPrice();
         updateBuyBtn()
@@ -419,11 +415,13 @@ function handleSeatClick(event) {
             event.target.classList.remove('vibration')
         }, 1000)
     }
-
 }
+//function sort int array
 function sortSeatArray(arr) {
     return arr.sort((a, b) => a - b);
 }
+
+//function display seat for standard and Vip with 1,2,3 => 1-3
 function displaySeatNumber(array, seatHTML) {
     sortSeatArray(array);
     let nums = [];
@@ -445,7 +443,7 @@ function displaySeatNumber(array, seatHTML) {
             nums = [];
             nums.push(array[i]);
         }
-   // seatSelectedStandardHTML.innerHTML = seatSelectedStandardHTML.innerHTML + " " + currentSeat.id.replace(/[^0-9]/g, '');
+        // seatSelectedStandardHTML.innerHTML = seatSelectedStandardHTML.innerHTML + " " + currentSeat.id.replace(/[^0-9]/g, '');
         if (i == array.length - 1) {
             if (nums.length >= 3) {
                 result += `${nums[0]} - ${nums[nums.length - 1]}, `;
@@ -456,14 +454,14 @@ function displaySeatNumber(array, seatHTML) {
                     console.log(nums[j]);
                 }
             }
-        }        
+        }
 
     }
     //remove 2nd to last character, to remove comma and space at the end of seat display
-    result = result.slice(0,-2);
+    result = result.slice(0, -2);
     seatHTML.innerHTML = result;
-
 }
+
 function generateSeats(rowData, seatRowHTML) {
     for (var i = 0; i < rowData.length; i++) {
         var currentSeat = rowData[i]
