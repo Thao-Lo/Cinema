@@ -632,7 +632,7 @@ path {
 
     .seat-selected-description {
         background: none;
-        height: 25%;
+        height: 27%;
         width: 100%;
         position: absolute;
         bottom: 0;
@@ -644,6 +644,7 @@ path {
         padding: 50px;
         width: 100%;
         align-items: center;
+        gap: 1rem;
 
     }
 
