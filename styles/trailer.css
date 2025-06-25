@@ -1,7 +1,7 @@
 body {
     width: 100vw;
     height: 100vh;
-    background: url(assests/image/trailer-bg.jpg) no-repeat left;
+    background: url(../assests/image/trailer-bg.jpg) no-repeat left;
     background-attachment: fixed;
     background-size: contain;
 }
@@ -17,7 +17,7 @@ body {
 }
 
 .trailer-section-bg {
-    background: url(assests/image/trailer-bg.jpg) no-repeat left bottom;
+    background: url(../assests/image/trailer-bg.jpg) no-repeat left bottom;
     background-size: contain;
     width: 90%;
     height: 70%;
@@ -235,7 +235,7 @@ body {
 
     .trailer-section-bg {
         padding: 2rem 0.5rem 0.5rem 0.5rem;
-        background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8) 70%, transparent), url(assests/image/trailer-bg.jpg) no-repeat bottom;
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8) 70%, transparent), url(../assests/image/trailer-bg.jpg) no-repeat bottom;
         background-size: contain;
         width: 100%;
         height: 100%;
