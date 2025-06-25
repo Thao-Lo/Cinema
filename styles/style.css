@@ -60,7 +60,7 @@ button {
 }
 
 .date {
-    background-image: url(/assests/image/aquaman.png);
+    background-image: url(assests/image/aquaman.png);
     background-repeat: no-repeat;
     background-size: contain;
     background-color: var(--black-color);
